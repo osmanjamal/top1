@@ -1,0 +1,240 @@
+{
+    "strategy_configs": {
+      "trend_following": {
+        "name": "Trend Following Strategy",
+        "type": "directional",
+        "enabled": true,
+        "timeframes": ["4h", "1d"],
+        "indicators": {
+          "moving_averages": {
+            "fast_ema": {
+              "period": 20,
+              "source": "close"
+            },
+            "slow_ema": {
+              "period": 50,
+              "source": "close"
+            },
+            "super_trend": {
+              "period": 10,
+              "multiplier": 3
+            }
+          },
+          "momentum": {
+            "rsi": {
+              "period": 14,
+              "overbought": 70,
+              "oversold": 30
+            },
+            "macd": {
+              "fast_period": 12,
+              "slow_period": 26,
+              "signal_period": 9
+            }
+          },
+          "volume": {
+            "vwap": {
+              "enabled": true
+            },
+            "volume_ma": {
+              "period": 20
+            }
+          }
+        },
+        "entry_rules": {
+          "long": [
+            "fast_ema > slow_ema",
+            "close > super_trend",
+            "rsi < 70",
+            "volume > volume_ma"
+          ],
+          "short": [
+            "fast_ema < slow_ema",
+            "close < super_trend",
+            "rsi > 30",
+            "volume > volume_ma"
+          ]
+        },
+        "exit_rules": {
+          "long": [
+            "fast_ema < slow_ema",
+            "close < super_trend"
+          ],
+          "short": [
+            "fast_ema > slow_ema",
+            "close > super_trend"
+          ]
+        }
+      },
+      "breakout_momentum": {
+        "name": "Breakout Momentum Strategy",
+        "type": "breakout",
+        "enabled": true,
+        "timeframes": ["1h", "4h"],
+        "indicators": {
+          "support_resistance": {
+            "pivot_points": {
+              "type": "fibonacci",
+              "period": 20
+            },
+            "price_channels": {
+              "period": 20
+            }
+          },
+          "volatility": {
+            "atr": {
+              "period": 14
+            },
+            "bollinger_bands": {
+              "period": 20,
+              "deviations": 2
+            }
+          },
+          "momentum": {
+            "stochastic": {
+              "k_period": 14,
+              "d_period": 3,
+              "overbought": 80,
+              "oversold": 20
+            }
+          }
+        },
+        "entry_rules": {
+          "long": [
+            "price breaks above resistance",
+            "volume surge > 200%",
+            "stochastic < 80"
+          ],
+          "short": [
+            "price breaks below support",
+            "volume surge > 200%",
+            "stochastic > 20"
+          ]
+        },
+        "position_sizing": {
+          "method": "atr_based",
+          "risk_percentage": 1,
+          "atr_multiplier": 2
+        }
+      },
+      "mean_reversion": {
+        "name": "Mean Reversion Strategy",
+        "type": "mean_reversion",
+        "enabled": true,
+        "timeframes": ["15m", "1h"],
+        "indicators": {
+          "bands": {
+            "bollinger": {
+              "period": 20,
+              "deviations": 2
+            },
+            "keltner": {
+              "period": 20,
+              "atr_multiplier": 2
+            }
+          },
+          "oscillators": {
+            "rsi": {
+              "period": 14,
+              "overbought": 70,
+              "oversold": 30
+            },
+            "cci": {
+              "period": 20,
+              "extreme_levels": [-100, 100]
+            }
+          }
+        },
+        "filters": {
+          "trend_filter": {
+            "enabled": true,
+            "method": "super_trend",
+            "period": 10,
+            "multiplier": 3
+          },
+          "volatility_filter": {
+            "enabled": true,
+            "min_atr": 0.5,
+            "max_atr": 5
+          }
+        }
+      }
+    },
+    "risk_parameters": {
+      "global": {
+        "max_trades_per_day": 5,
+        "max_positions": 3,
+        "max_drawdown": 20,
+        "position_sizing": {
+          "default_risk": 1,
+          "max_risk": 2
+        }
+      },
+      "per_strategy": {
+        "trend_following": {
+          "max_positions": 2,
+          "risk_multiplier": 1
+        },
+        "breakout_momentum": {
+          "max_positions": 1,
+          "risk_multiplier": 1.5
+        },
+        "mean_reversion": {
+          "max_positions": 2,
+          "risk_multiplier": 0.8
+        }
+      }
+    },
+    "execution_settings": {
+      "order_types": {
+        "entry": {
+          "default": "LIMIT",
+          "allowed": ["LIMIT", "MARKET"]
+        },
+        "exit": {
+          "default": "MARKET",
+          "allowed": ["LIMIT", "MARKET", "STOP_MARKET"]
+        }
+      },
+      "timeouts": {
+        "entry_orders": 60,
+        "exit_orders": 30
+      },
+      "retries": {
+        "max_attempts": 3,
+        "delay_seconds": 5
+      }
+    },
+    "monitoring": {
+      "performance_metrics": [
+        "win_rate",
+        "profit_factor",
+        "max_drawdown",
+        "sharpe_ratio"
+      ],
+      "alerts": {
+        "performance": {
+          "min_win_rate": 40,
+          "min_profit_factor": 1.2,
+          "max_drawdown": 15
+        },
+        "risk": {
+          "position_size": true,
+          "exposure": true,
+          "drawdown": true
+        }
+      },
+      "reporting": {
+        "frequency": "daily",
+        "metrics": [
+          "trades_summary",
+          "performance_stats",
+          "risk_metrics"
+        ],
+        "notifications": [
+          "email",
+          "telegram"
+        ]
+      }
+    }
+  }

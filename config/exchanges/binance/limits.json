@@ -1,0 +1,117 @@
+{
+    "account_limits": {
+      "max_open_orders": 200,
+      "max_positions": 50,
+      "max_active_trading_bots": 10,
+      "max_concurrent_requests": 50,
+      "max_positions_per_symbol": 5,
+      "max_daily_trades": 1000
+    },
+    "position_limits": {
+      "max_leverage": {
+        "default": 20,
+        "by_tier": {
+          "tier_1": 125,
+          "tier_2": 100,
+          "tier_3": 75,
+          "tier_4": 50
+        }
+      },
+      "max_position_size": {
+        "default_percentage": 5,
+        "absolute_maximum_usdt": 1000000,
+        "by_asset": {
+          "BTC": 10,
+          "ETH": 50,
+          "ALT": 2.5
+        }
+      },
+      "margin_requirements": {
+        "initial_margin": 0.01,
+        "maintenance_margin": 0.005,
+        "liquidation_margin": 0.0025
+      }
+    },
+    "order_limits": {
+      "min_order_size_usdt": 10,
+      "max_order_size_usdt": 1000000,
+      "price_deviation": {
+        "max_percentage": 5,
+        "reference_type": "mark_price"
+      },
+      "order_types": {
+        "market": {
+          "enabled": true,
+          "max_slippage_percent": 0.5
+        },
+        "limit": {
+          "enabled": true,
+          "max_distance_percent": 5
+        },
+        "stop_market": {
+          "enabled": true,
+          "min_distance_percent": 0.5
+        },
+        "stop_limit": {
+          "enabled": true,
+          "min_distance_percent": 0.5,
+          "max_distance_percent": 10
+        }
+      }
+    },
+    "risk_limits": {
+      "max_daily_drawdown_percent": 5,
+      "max_position_drawdown_percent": 20,
+      "max_leverage_by_volume": {
+        "high_volume": 100,
+        "medium_volume": 50,
+        "low_volume": 20
+      },
+      "margin_call_levels": {
+        "warning": 80,
+        "critical": 90,
+        "liquidation": 97.5
+      },
+      "position_concentration": {
+        "max_single_asset_percent": 30,
+        "max_sector_percent": 60
+      }
+    },
+    "time_limits": {
+      "order_expiration": {
+        "limit_orders_days": 30,
+        "stop_orders_days": 30,
+        "default_gtc": true
+      },
+      "minimum_holding_period": {
+        "scalping": "1m",
+        "day_trading": "1h",
+        "swing_trading": "1d"
+      },
+      "trading_hours": {
+        "maintenance_window": {
+          "start": "00:00 UTC",
+          "duration_hours": 1
+        },
+        "restricted_periods": []
+      }
+    },
+    "bot_limits": {
+      "signal_validation": {
+        "min_confidence_score": 70,
+        "min_timeframe": "1m",
+        "max_signals_per_hour": 100
+      },
+      "automation": {
+        "max_concurrent_trades": 5,
+        "min_trade_interval": "1m",
+        "max_daily_trades": 100,
+        "required_confirmations": 2
+      },
+      "performance_requirements": {
+        "min_win_rate": 0.5,
+        "min_profit_factor": 1.5,
+        "max_drawdown": 0.2
+      }
+    }
+  }

@@ -1,0 +1,172 @@
+{
+    "global_settings": {
+      "max_account_risk": {
+        "daily_percentage": 2,
+        "weekly_percentage": 5,
+        "monthly_percentage": 15
+      },
+      "position_sizing": {
+        "default_risk_per_trade": 1,
+        "max_risk_per_trade": 2,
+        "position_scaling": {
+          "enabled": true,
+          "scale_in_levels": 3,
+          "scale_out_levels": 2
+        }
+      },
+      "drawdown_controls": {
+        "max_drawdown": {
+          "daily": 5,
+          "weekly": 10,
+          "monthly": 20,
+          "total": 30
+        },
+        "recovery_rules": {
+          "reduce_position_size": true,
+          "reduction_percentage": 50,
+          "pause_trading": true,
+          "pause_duration_hours": 24
+        }
+      }
+    },
+    "stop_loss_settings": {
+      "default": {
+        "enabled": true,
+        "type": "fixed",
+        "distance_percentage": 2,
+        "min_distance_percentage": 0.5,
+        "max_distance_percentage": 5
+      },
+      "trailing_stop": {
+        "enabled": true,
+        "activation_percentage": 1,
+        "callback_rate": 0.5,
+        "step_size": 0.1
+      },
+      "dynamic_stops": {
+        "enabled": true,
+        "volatility_multiplier": 2,
+        "atr_period": 14,
+        "minimum_distance": 0.5
+      }
+    },
+    "take_profit_settings": {
+      "default": {
+        "enabled": true,
+        "type": "fixed",
+        "target_percentage": 3,
+        "risk_reward_ratio": 1.5
+      },
+      "tiered_targets": {
+        "enabled": true,
+        "levels": [
+          {
+            "percentage": 1,
+            "position_size": 0.3
+          },
+          {
+            "percentage": 2,
+            "position_size": 0.3
+          },
+          {
+            "percentage": 3,
+            "position_size": 0.4
+          }
+        ]
+      }
+    },
+    "leverage_management": {
+      "default_leverage": 5,
+      "max_leverage": 20,
+      "dynamic_leverage": {
+        "enabled": true,
+        "volatility_based": {
+          "high_volatility": 2,
+          "medium_volatility": 5,
+          "low_volatility": 10
+        },
+        "balance_based": {
+          "tier_1": {
+            "max_balance": 10000,
+            "max_leverage": 20
+          },
+          "tier_2": {
+            "max_balance": 50000,
+            "max_leverage": 10
+          },
+          "tier_3": {
+            "max_balance": 100000,
+            "max_leverage": 5
+          }
+        }
+      }
+    },
+    "correlation_risk": {
+      "max_correlated_positions": 3,
+      "correlation_threshold": 0.7,
+      "sector_exposure": {
+        "max_single_sector": 30,
+        "excluded_sectors": ["meme_coins", "new_listings"]
+      },
+      "pair_correlations": {
+        "check_enabled": true,
+        "lookback_period": "30d",
+        "refresh_interval": "1h"
+      }
+    },
+    "volatility_controls": {
+      "volatility_limits": {
+        "max_daily_volatility": 5,
+        "high_volatility_adjustment": {
+          "reduce_position_size": true,
+          "reduction_percentage": 50,
+          "increase_stops": true,
+          "stop_multiplier": 1.5
+        }
+      },
+      "volatility_measurement": {
+        "method": "ATR",
+        "period": 14,
+        "multiplier": 2.5
+      },
+      "market_conditions": {
+        "high_volatility_threshold": 0.8,
+        "low_volatility_threshold": 0.2,
+        "trending_threshold": 0.6
+      }
+    },
+    "risk_monitoring": {
+      "real_time_monitoring": {
+        "enabled": true,
+        "check_interval_seconds": 60,
+        "metrics": [
+          "drawdown",
+          "exposure",
+          "volatility",
+          "profit_loss"
+        ]
+      },
+      "alerts": {
+        "risk_level_alerts": {
+          "warning": 70,
+          "critical": 90
+        },
+        "notification_channels": [
+          "email",
+          "telegram",
+          "dashboard"
+        ]
+      },
+      "reporting": {
+        "daily_report": true,
+        "weekly_summary": true,
+        "monthly_analysis": true,
+        "include_metrics": [
+          "win_rate",
+          "profit_factor",
+          "sharpe_ratio",
+          "max_drawdown"
+        ]
+      }
+    }
+  }

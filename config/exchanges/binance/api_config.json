@@ -1,0 +1,84 @@
+{
+    "api": {
+      "testnet": {
+        "base_url": "https://testnet.binance.vision",
+        "ws_base_url": "wss://testnet.binance.vision/ws",
+        "api_limits": {
+          "requests_per_minute": 1200,
+          "orders_per_second": 10,
+          "order_count_10s": 50,
+          "max_reconnect_attempts": 5,
+          "heartbeat_interval": 30
+        }
+      },
+      "mainnet": {
+        "base_url": "https://api.binance.com",
+        "ws_base_url": "wss://stream.binance.com:9443/ws",
+        "api_limits": {
+          "requests_per_minute": 1200,
+          "orders_per_second": 10,
+          "order_count_10s": 50,
+          "max_reconnect_attempts": 5,
+          "heartbeat_interval": 30
+        }
+      }
+    },
+    "auth": {
+      "ip_whitelist": ["64.202.96.0/24"],
+      "required_permissions": [
+        "read_info",
+        "spot_trade",
+        "futures_trade",
+        "margin_trade"
+      ],
+      "security_options": {
+        "force_2fa": true,
+        "encryption_protocol": "AES-256-GCM",
+        "key_rotation_period_days": 30,
+        "session_timeout_minutes": 60
+      }
+    },
+    "connection": {
+      "timeout_ms": 5000,
+      "keep_alive_ms": 30000,
+      "retry_delay_ms": 1000,
+      "max_retries": 3,
+      "auto_reconnect": true,
+      "proxy_settings": {
+        "enabled": false,
+        "host": "",
+        "port": null,
+        "auth": {
+          "username": "",
+          "password": ""
+        }
+      }
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "strategy": "sliding_window",
+      "error_handling": {
+        "retry_codes": [429, 418],
+        "max_retries": 3,
+        "backoff_multiplier": 2
+      },
+      "alerts": {
+        "threshold_percentage": 80,
+        "notification_channels": ["email", "telegram"]
+      }
+    },
+    "monitoring": {
+      "enabled": true,
+      "metrics": [
+        "request_latency",
+        "error_rate",
+        "order_success_rate",
+        "websocket_health"
+      ],
+      "logging": {
+        "level": "INFO",
+        "rotate_size_mb": 100,
+        "retain_days": 30
+      }
+    }
+  }

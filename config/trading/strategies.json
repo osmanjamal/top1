@@ -1,0 +1,170 @@
+{
+    "sizing_methods": {
+      "default_method": "risk_based",
+      "available_methods": {
+        "risk_based": {
+          "enabled": true,
+          "default_risk_percentage": 1,
+          "min_risk_percentage": 0.1,
+          "max_risk_percentage": 2,
+          "risk_adjustment": {
+            "winning_streak": {
+              "enabled": true,
+              "increase_percentage": 20,
+              "max_increases": 3
+            },
+            "losing_streak": {
+              "enabled": true,
+              "decrease_percentage": 50,
+              "recovery_trades": 2
+            }
+          }
+        },
+        "fixed_size": {
+          "enabled": true,
+          "default_size_usdt": 1000,
+          "min_size_usdt": 100,
+          "max_size_usdt": 10000
+        },
+        "equity_percentage": {
+          "enabled": true,
+          "default_percentage": 5,
+          "min_percentage": 1,
+          "max_percentage": 10
+        }
+      }
+    },
+    "position_scaling": {
+      "scale_in": {
+        "enabled": true,
+        "max_entries": 3,
+        "entry_spacing": {
+          "type": "price_based",
+          "percentage": 1
+        },
+        "size_distribution": [
+          {
+            "order": 1,
+            "percentage": 40
+          },
+          {
+            "order": 2,
+            "percentage": 30
+          },
+          {
+            "order": 3,
+            "percentage": 30
+          }
+        ]
+      },
+      "scale_out": {
+        "enabled": true,
+        "max_exits": 3,
+        "profit_targets": [
+          {
+            "percentage": 1,
+            "size_percentage": 30
+          },
+          {
+            "percentage": 2,
+            "size_percentage": 30
+          },
+          {
+            "percentage": 3,
+            "size_percentage": 40
+          }
+        ]
+      }
+    },
+    "dynamic_sizing": {
+      "volatility_based": {
+        "enabled": true,
+        "atr_period": 14,
+        "atr_multiplier": 2,
+        "size_adjustments": {
+          "high_volatility": 0.5,
+          "normal_volatility": 1,
+          "low_volatility": 1.5
+        }
+      },
+      "trend_based": {
+        "enabled": true,
+        "trend_indicators": {
+          "moving_averages": {
+            "fast_period": 20,
+            "slow_period": 50
+          },
+          "adx": {
+            "period": 14,
+            "threshold": 25
+          }
+        },
+        "size_adjustments": {
+          "strong_trend": 1.2,
+          "weak_trend": 0.8,
+          "ranging": 0.6
+        }
+      }
+    },
+    "asset_specific": {
+      "btc": {
+        "min_position_size": 0.001,
+        "max_position_size": 1,
+        "size_precision": 3,
+        "default_leverage": 5
+      },
+      "eth": {
+        "min_position_size": 0.01,
+        "max_position_size": 10,
+        "size_precision": 2,
+        "default_leverage": 5
+      }
+    },
+    "balance_thresholds": {
+      "tier_1": {
+        "max_balance": 10000,
+        "risk_percentage": 1,
+        "max_leverage": 10
+      },
+      "tier_2": {
+        "max_balance": 50000,
+        "risk_percentage": 0.8,
+        "max_leverage": 7
+      },
+      "tier_3": {
+        "max_balance": 100000,
+        "risk_percentage": 0.5,
+        "max_leverage": 5
+      }
+    },
+    "filters": {
+      "min_position_size": {
+        "usdt": 100,
+        "btc": 0.001,
+        "eth": 0.01
+      },
+      "max_position_size": {
+        "usdt": 100000,
+        "btc": 1,
+        "eth": 10
+      },
+      "position_count": {
+        "max_per_asset": 3,
+        "max_total": 10
+      }
+    },
+    "execution_rules": {
+      "slippage_tolerance": {
+        "market_orders": 0.1,
+        "limit_orders": 0.05
+      },
+      "order_types": {
+        "entry": ["LIMIT", "MARKET"],
+        "exit": ["LIMIT", "MARKET", "STOP_MARKET"]
+      },
+      "timeout_seconds": {
+        "entry_orders": 60,
+        "exit_orders": 30
+      }
+    }
+  }

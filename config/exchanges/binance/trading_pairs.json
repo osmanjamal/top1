@@ -1,0 +1,101 @@
+{
+    "spot": {
+      "enabled_pairs": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "SOLUSDT",
+        "ADAUSDT",
+        "DOTUSDT",
+        "XRPUSDT"
+      ],
+      "quote_assets": ["USDT", "BUSD", "BTC", "ETH"],
+      "pair_settings": {
+        "BTCUSDT": {
+          "min_quantity": 0.00001,
+          "max_quantity": 9000,
+          "price_precision": 2,
+          "quantity_precision": 5,
+          "min_notional": 10,
+          "is_favorite": true,
+          "trading_enabled": true
+        },
+        "ETHUSDT": {
+          "min_quantity": 0.0001,
+          "max_quantity": 9000,
+          "price_precision": 2,
+          "quantity_precision": 4,
+          "min_notional": 10,
+          "is_favorite": true,
+          "trading_enabled": true
+        }
+      }
+    },
+    "futures": {
+      "enabled_pairs": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "SOLUSDT"
+      ],
+      "pair_settings": {
+        "BTCUSDT": {
+          "max_leverage": 125,
+          "maintenance_margin_rate": 0.004,
+          "price_precision": 1,
+          "quantity_precision": 3,
+          "min_quantity": 0.001,
+          "max_quantity": 1000,
+          "liquidation_fee": 0.020,
+          "maker_fee": -0.0002,
+          "taker_fee": 0.0004,
+          "is_favorite": true,
+          "trading_enabled": true
+        },
+        "ETHUSDT": {
+          "max_leverage": 100,
+          "maintenance_margin_rate": 0.005,
+          "price_precision": 2,
+          "quantity_precision": 3,
+          "min_quantity": 0.001,
+          "max_quantity": 10000,
+          "liquidation_fee": 0.020,
+          "maker_fee": -0.0002,
+          "taker_fee": 0.0004,
+          "is_favorite": true,
+          "trading_enabled": true
+        }
+      }
+    },
+    "filters": {
+      "min_24h_volume": 1000000,
+      "min_market_cap": 100000000,
+      "excluded_pairs": [
+        "SAFEMOONUSDT",
+        "SHIBUSDT"
+      ],
+      "required_features": [
+        "margin_enabled",
+        "lending_enabled"
+      ]
+    },
+    "display_settings": {
+      "default_timeframe": "4h",
+      "available_timeframes": [
+        "1m", "5m", "15m", "30m",
+        "1h", "2h", "4h", "6h",
+        "12h", "1d", "1w", "1M"
+      ],
+      "chart_types": [
+        "candlestick",
+        "line",
+        "area"
+      ],
+      "indicators": {
+        "moving_averages": ["SMA", "EMA", "WMA"],
+        "oscillators": ["RSI", "MACD", "Stochastic"],
+        "volumes": ["OBV", "Volume Profile"],
+        "volatility": ["Bollinger Bands", "ATR"]
+      }
+    }
+  }
