@@ -1,10 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="trading-bot",
-    version="1.0",
+    name="top1",
+    version="0.1",
     packages=find_packages(),
+    install_requires=[
+        "fastapi",
+        "uvicorn",
+        "pydantic",
+        "pydantic-settings"
+    ],
 )
-
-# ثم تثبيته
-pip install -e .

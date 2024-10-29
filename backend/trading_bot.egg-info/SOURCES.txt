@@ -1,0 +1,10 @@
+setup.py
+app/__init__.py
+app/main.py
+app/api/__init__.py
+app/api/v1/__init__.py
+trading_bot.egg-info/PKG-INFO
+trading_bot.egg-info/SOURCES.txt
+trading_bot.egg-info/dependency_links.txt
+trading_bot.egg-info/requires.txt
+trading_bot.egg-info/top_level.txt
