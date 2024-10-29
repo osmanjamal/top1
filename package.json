@@ -1,0 +1,29 @@
+{
+  "name": "trading-platform",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "python -m uvicorn backend.app.main:app --reload",
+    "build": "cd frontend && npm run build",
+    "prepare": "husky install",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "pytest backend/tests",
+    "lint": "npm run lint:frontend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "format": "npm run format:frontend",
+    "format:frontend": "cd frontend && npm run format",
+    "install:all": "npm install && cd frontend && npm install",
+    "clean": "rimraf frontend/build backend/**/__pycache__ backend/**/*.pyc"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "husky": "^9.1.6",
+    "rimraf": "^4.1.2"
+  }
+}
